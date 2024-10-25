@@ -173,3 +173,6 @@ client_secret.json
 credentials.json
 token.json
 sample/
+app/LightRag/LightRAG
+app/LightRag/dataset
+app/LightRag/dickens

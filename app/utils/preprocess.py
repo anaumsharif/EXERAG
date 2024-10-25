@@ -3,8 +3,6 @@ import requests
 from utils.initialize import load_env_variables
 from utils.config_settings import config
 
-
-# 'COHERE_API_KEY'="pmbYREh3ZBIpvKRxO8R54bRr4xQt4MmJXh7gnNsr"
 env_name = load_env_variables()
 
 source = config[env_name].COHERE_API_KEY

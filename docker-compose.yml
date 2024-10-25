@@ -1,6 +1,6 @@
 services:
   hybrid_app:
-    image: exerag:0.0.1
+    image: exe-rag:0.0.1
     working_dir: /app
     environment:
       - NEO4J_URI=${NEO4J_URI}

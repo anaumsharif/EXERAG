@@ -1,0 +1,15 @@
+accelerate
+aioboto3
+graspologic
+hnswlib
+nano-vectordb
+networkx
+ollama
+openai
+tenacity
+tiktoken
+torch
+transformers
+xxhash
+pyvis
+aiohttp

@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM python:3.12-slim AS builder
+FROM python:3.10-slim AS builder
 
 # Set working directory
 WORKDIR /app
@@ -10,6 +10,8 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 RUN python -m nltk.downloader punkt
+RUN git clone https://github.com/HKUDS/LightRAG.git
+RUN pip install -e ./LightRAG
 
 RUN apt-get update && \
 DEBIAN_FRONTEND=noninteractive apt-get install -y \

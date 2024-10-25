@@ -72,6 +72,8 @@ class GoogleDriveDataLoader(BaseDataLoader):
         self.service = build("drive", "v3", credentials=self.creds)
 
     def load_data(self, file_type):
+
+        file_type = "pdf,image,docx"
         self.file_types = file_type.split(",")
         """
         Load and process the files in the specified Google Drive folder.
@@ -88,6 +90,7 @@ class GoogleDriveDataLoader(BaseDataLoader):
         Process all files in the specified Google Drive folder by file type using `unstructured`.
         This method is now part of the `GoogleDriveDataLoader` class.
         """
+        
         try:
             query = f"'{folder_id}' in parents"
             results = (

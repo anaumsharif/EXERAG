@@ -1,8 +1,8 @@
 import os
 import PyPDF2  # Ensure you have this package installed for PDF reading
 import docx  # For reading DOCX files
-from lightrag import LightRAG,QueryParam
-from lightrag.storage import JsonKVStorage, NanoVectorDBStorage, NetworkXStorage
+from LightRAG.lightrag import LightRAG,QueryParam
+from LightRAG.lightrag.storage import JsonKVStorage, NanoVectorDBStorage, NetworkXStorage
 from dotenv import load_dotenv
 
 from utils.initialize import load_env_variables

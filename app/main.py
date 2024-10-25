@@ -35,7 +35,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+persisted_chunked_docs = []
 
 # Define FastAPI endpoints
 @app.get("/")
@@ -76,19 +76,26 @@ async def do_parsing_and_loading(
     texts = [chunk.page_content for chunk in chunked_docs]
     embeddings = selected_embedding_model.embed_documents(texts)
 
+    global persisted_chunked_docs
+    persisted_chunked_docs.extend(chunked_docs)
+    
     # Add embeddings and chunked documents to the vector store
     if vector_index == "pinecone":
         index , vector_store = get_vector_store(vector_index, embeddings,selected_embedding_model,embedding_model_name)
     else:    
-        vector_store = get_vector_store(vector_index, embeddings,selected_embedding_model)
+        vector_store = get_vector_store(vector_index, embeddings,selected_embedding_model,embedding_model_name)
     vector_store.add_documents(chunked_docs) 
     if vector_index == "pinecone":
         print(index.describe_index_stats())
     # Check the number of vectors stored in the FAISS index
 
-    return {"message": "Documents loaded, chunked, and embedded successfully!"}
+    return {"message": "Documents loaded, chunked, and embedded successfully!" , "Chunks":chunked_docs}
 
 
+
+@app.post("/api/persist")
+async def persist():
+    return {"persisted_chunked_docs": persisted_chunked_docs}
 
 
 @app.post("/api/question/testing")

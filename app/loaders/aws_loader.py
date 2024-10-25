@@ -69,7 +69,7 @@ class AWSDataLoader(BaseDataLoader):
         self.aws_secret_access_key = AWS_SECRET_ACCESS_KEY
 
         
-        # Initialize S3DirectoryLoader only if file_types includes 'all'
+         # Initialize S3DirectoryLoader only if file_types includes 'all'
 
     def load_data(self,file_type):
 

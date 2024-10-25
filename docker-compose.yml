@@ -1,0 +1,28 @@
+services:
+  hybrid_app:
+    image: gen_iq_loadertest:0.0.1
+    working_dir: /app
+    environment:
+      - NEO4J_URI=${NEO4J_URI}
+      - NEO4J_USER=${NEO4J_USERNAME}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+      
+
+    volumes:
+      - .:/app
+    command: ["fastapi", "run", "app/main.py","--port", "8000"]
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - neo4j
+
+  neo4j:
+    image: neo4j
+    container_name: neo4j_db
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+    ports:
+      - "7474:7474"
+      - "7687:7687"
